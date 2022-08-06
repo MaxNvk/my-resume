@@ -15,9 +15,37 @@ import { defineComponent } from "vue";
 import ContentBlock from "@/components/ContentBlock.vue";
 import WorkExperience from "@/components/WorkExperience.vue";
 import ExamplesOfWork from "@/components/ExamplesOfWork.vue";
+import { useHead } from "@vueuse/head";
 
 export default defineComponent({
   components: { ContentBlock, WorkExperience, ExamplesOfWork },
+  setup() {
+    useHead({
+      title: "Maksym Novikov's website",
+      meta: [
+        {
+          name: "description",
+          content: "You can view more info about me on this website.",
+        },
+        {
+          property: "og:url",
+          content: "https://maxnvk.github.io/",
+        },
+        {
+          property: "og:title",
+          content: "Maksym Novikov's website",
+        },
+        {
+          property: "og:description",
+          content: "You can view more info about me on this website.",
+        },
+        {
+          property: "og:image",
+          content: "/og-image.png",
+        },
+      ],
+    });
+  },
 });
 </script>
 
