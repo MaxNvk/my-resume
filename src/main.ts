@@ -3,4 +3,3 @@ import App from "./App.vue";
 import "./assets/styles/index.scss";
 
 export const createApp = ViteSSG(App);
-// createApp(App).mount("#app");

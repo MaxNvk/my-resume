@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { WORKING_START_DATE } from "@/shared/constants";
 import CanvasAnimation from "@/components/CanvasAnimation.vue";
