@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1 class="text-5xl font-semibold flex">Hello. <canvas-animation class="ml-1 mt-1 md:mt-2.5" /></h1>
+    <h1 class="text-5xl font-semibold flex">Hello. <canvas-animation class="ml-1 mt-1 sm:mt-2.5" /></h1>
 
     <div class="content-block__wrapper mt-12">
       <p class="mb-3">
