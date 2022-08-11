@@ -1,7 +1,8 @@
 <template>
   <section>
     <h1 class="text-5xl font-semibold flex">
-      Hello. <canvas-animation class="ml-1 mt-1 sm:mt-2.5" />
+      Hello.
+      <canvas-animation class="ml-1 mt-1 sm:mt-2.5" />
     </h1>
 
     <div class="content-block__wrapper mt-12">
@@ -27,7 +28,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
+import relativeTime from "dayjs/plugin/relativeTime.js";
 import { WORKING_START_DATE } from "@/shared/constants";
 import CanvasAnimation from "@/components/CanvasAnimation.vue";
 
