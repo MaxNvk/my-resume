@@ -6,7 +6,11 @@
       <content-block />
       <work-experience />
       <examples-of-work />
+
+      <contact-me-block />
     </div>
+
+    <theme-switcher />
   </main>
 </template>
 
@@ -16,9 +20,18 @@ import ContentBlock from "@/components/ContentBlock.vue";
 import WorkExperience from "@/components/WorkExperience.vue";
 import ExamplesOfWork from "@/components/ExamplesOfWork.vue";
 import { useHead } from "@vueuse/head";
+import ContactMeBlock from "@/components/ContactMeBlock.vue";
+import { setInitialTheme } from "@/utils/set-initial-theme";
+import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
 
 export default defineComponent({
-  components: { ContentBlock, WorkExperience, ExamplesOfWork },
+  components: {
+    ThemeSwitcher,
+    ContactMeBlock,
+    ContentBlock,
+    WorkExperience,
+    ExamplesOfWork,
+  },
   setup() {
     useHead({
       title: "Maksym Novikov's website",
@@ -45,6 +58,9 @@ export default defineComponent({
         },
       ],
     });
+  },
+  beforeMount() {
+    setInitialTheme();
   },
 });
 </script>

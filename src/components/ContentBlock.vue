@@ -7,9 +7,11 @@
 
     <div class="content-block__wrapper mt-12">
       <p class="mb-3">
-        My name is <strong>Maksym Novikov.</strong> I am a Front-end engineer
-        with {{ startWorkingDate }} of experience in developing projects of
-        different scales.
+        My name is
+        <strong>Maksym Novikov.</strong> I am a Front-end engineer with
+        <strong><span class="whitespace-nowrap">{{ startWorkingDate }}</span> of
+          experience</strong>
+        in developing projects of different scales.
       </p>
 
       <p class="mb-3">
