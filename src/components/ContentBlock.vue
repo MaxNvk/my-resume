@@ -9,8 +9,10 @@
       <p class="mb-3">
         My name is
         <strong>Maksym Novikov.</strong> I am a Front-end engineer with
-        <strong><span class="whitespace-nowrap">{{ startWorkingDate }}</span> of
-          experience</strong>
+        <strong
+          ><span class="whitespace-nowrap">{{ startWorkingDate }}</span> of
+          experience</strong
+        >
         in developing projects of different scales.
       </p>
 
@@ -24,6 +26,8 @@
         I dedicate my free time to studying and contributing to open source.
       </p>
     </div>
+
+    <contacts-block class="mt-4" />
   </section>
 </template>
 
@@ -33,11 +37,13 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime.js";
 import { WORKING_START_DATE } from "@/shared/constants";
 import CanvasAnimation from "@/components/CanvasAnimation.vue";
+import ContactsBlock from "@/components/ContactsBlock.vue";
 
 dayjs.extend(relativeTime);
 
 export default defineComponent({
   components: {
+    ContactsBlock,
     CanvasAnimation,
   },
   computed: {
