@@ -49,7 +49,6 @@ const getAnimationState = (offset: number): IAnimationRect[][] => {
 export default defineComponent({
   data() {
     return {
-      drawTimeout: undefined as unknown as ReturnType<typeof setTimeout>,
       step: 0,
     };
   },
@@ -87,15 +86,13 @@ export default defineComponent({
     },
 
     setAnimation(): void {
-      clearTimeout(this.drawTimeout);
-
-      this.drawTimeout = setTimeout(() => {
+      requestAnimationFrame(() => {
         this.step = this.step >= COLS_COUNT ? 0 : this.step + 1;
 
         this.draw(this.step);
 
-        this.setAnimation();
-      }, ANIMATION_UPDATE_TIMEOUT);
+        setTimeout(this.setAnimation, 25);
+      });
     },
 
     draw(offset: number) {
