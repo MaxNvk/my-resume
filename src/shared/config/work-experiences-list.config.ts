@@ -22,7 +22,7 @@ export const workExperiencesList: IWorkExperience[] = [
     title: "Empat | June 2018 - April 2021",
     description:
       "Was responsible for development of CRM systems on Vue.js, development of websites with Drupal/Wordpress CMS systems, estimation of new projects, support of existing projects mentoring of trainee engineers.",
-    techStack: "Vue.js, Nuxt.js, Vuex, Gulp, Webpack, JQuery, PHP, Wordpress.",
+    techStack: "Vue.js, Nuxt.js, Vuex, React.js, Redux, Gulp, Webpack, JQuery, PHP, Wordpress.",
   },
   {
     title: "Schrödinger's Cat Laboratory | April 2017 – June 2018",
