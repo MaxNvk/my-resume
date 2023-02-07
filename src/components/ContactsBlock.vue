@@ -9,21 +9,16 @@
     <a class="text-red-400" :href="TELEGRAM_LINK">
       <font-awesome-icon :icon="['fa-brands', 'telegram-plane']" />
     </a>
-
-    <a class="text-red-400" :href="`tel:${PHONE_NUMBER}`">
-      <font-awesome-icon icon="phone" />
-    </a>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { EMAIL_ADDRESS, PHONE_NUMBER, TELEGRAM_LINK } from "@/shared/constants";
+import { EMAIL_ADDRESS, TELEGRAM_LINK } from "@/shared/constants";
 
 export default defineComponent({
   setup() {
     return {
-      PHONE_NUMBER,
       TELEGRAM_LINK,
       EMAIL_ADDRESS,
     };
