@@ -2,11 +2,12 @@
   <canvas ref="canvas" />
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import { getDegreeSin } from "@/utils/get-degree-sin";
 import type { IAnimationRect } from "@/shared/interfaces/animation-rect.interface";
 import { ERectColor } from "@/shared/enums/rect-color.enum";
+import { onMounted, onUnmounted, ref } from "vue";
+
 const ROWS_COUNT = 35;
 const COLS_COUNT = 45;
 const CIRCLE_DEGREES = 360;
@@ -46,82 +47,80 @@ const getAnimationState = (offset: number): IAnimationRect[][] => {
   return matrix;
 };
 
-export default defineComponent({
-  data() {
-    return {
-      step: 0,
-    };
-  },
-  mounted() {
-    this.initializeAnimation();
-  },
-  methods: {
-    initializeAnimation(): void {
-      this.setCanvasSize();
-      this.draw(0);
+const step = ref(0);
+const timeout = ref<ReturnType<typeof setTimeout> | null>(null);
 
-      this.setAnimation();
-    },
+const initializeAnimation = (): void => {
+  setCanvasSize();
+  draw(0);
 
-    setCanvasSize(): void {
-      const canvas = this.$refs.canvas as HTMLCanvasElement;
-      const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
-      canvas.width = IMAGE_WIDTH;
-      canvas.height = IMAGE_HEIGHT;
+  setAnimation();
+};
 
-      // Get the DPR and size of the canvas
-      const dpr = window.devicePixelRatio;
-      const rect = canvas.getBoundingClientRect();
+onMounted(initializeAnimation);
 
-      // Set the "actual" size of the canvas
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-
-      // Scale the context to ensure correct drawing operations
-      ctx.scale(dpr, dpr);
-
-      // Set the "drawn" size of the canvas
-      canvas.style.width = `${rect.width}px`;
-      canvas.style.height = `${rect.height}px`;
-    },
-
-    setAnimation(): void {
-      requestAnimationFrame(() => {
-        this.step = this.step >= COLS_COUNT ? 0 : this.step + 1;
-
-        this.draw(this.step);
-
-        setTimeout(this.setAnimation, 25);
-      });
-    },
-
-    draw(offset: number) {
-      const canvas = this.$refs.canvas as HTMLCanvasElement;
-      const ctx = canvas.getContext("2d", {
-        alpha: false,
-      }) as CanvasRenderingContext2D;
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Set shadow params
-      ctx.shadowBlur = 1;
-      ctx.shadowColor = "rgba(0,0,0, 0.65)";
-      ctx.shadowOffsetY = SHADOW_OFFSET;
-      ctx.shadowOffsetX = SHADOW_OFFSET;
-      //
-
-      // Draw flag
-      const matrix = getAnimationState(offset);
-      matrix.forEach((row) =>
-        row.forEach((col) => {
-          ctx.fillStyle = col.color;
-          ctx.fillRect(col.x, col.y, RECT_SIZE, RECT_SIZE);
-        })
-      );
-      //
-    },
-  },
+onUnmounted(() => {
+  clearTimeout(timeout.value);
 });
+
+const canvas = ref<HTMLCanvasElement>(null);
+
+const setCanvasSize = (): void => {
+  const ctx = canvas.value.getContext("2d");
+  canvas.value.width = IMAGE_WIDTH;
+  canvas.value.height = IMAGE_HEIGHT;
+
+  // Get the DPR and size of the canvas
+  const dpr = window.devicePixelRatio;
+  const rect = canvas.value.getBoundingClientRect();
+
+  // Set the "actual" size of the canvas
+  canvas.value.width = rect.width * dpr;
+  canvas.value.height = rect.height * dpr;
+
+  // Scale the context to ensure correct drawing operations
+  ctx.scale(dpr, dpr);
+
+  // Set the "drawn" size of the canvas
+  canvas.value.style.width = `${rect.width}px`;
+  canvas.value.style.height = `${rect.height}px`;
+};
+
+const setAnimation = (): void => {
+  requestAnimationFrame(() => {
+    step.value = step.value >= COLS_COUNT ? 0 : step.value + 1;
+
+    draw(step.value);
+
+    timeout.value = setTimeout(setAnimation, 25);
+  });
+};
+
+const draw = (offset: number) => {
+  const ctx = canvas.value.getContext("2d", {
+    alpha: false,
+  }) as CanvasRenderingContext2D;
+
+  ctx.clearRect(0, 0, canvas.value.width, canvas.value.height);
+
+  // Set shadow params
+  ctx.shadowBlur = 6;
+  ctx.shadowColor = "rgba(0,0,0, 0.5)";
+  ctx.shadowOffsetY = SHADOW_OFFSET;
+  ctx.shadowOffsetX = SHADOW_OFFSET;
+  //
+
+  // Draw flag
+  const matrix = getAnimationState(offset);
+
+  matrix.forEach((row) =>
+    row.forEach((col) => {
+      ctx.fillStyle = col.color;
+      ctx.fillRect(col.x, col.y, RECT_SIZE, RECT_SIZE);
+    })
+  );
+  //
+};
 </script>
 
 <style lang="scss" scoped></style>
