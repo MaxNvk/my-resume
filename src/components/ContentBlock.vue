@@ -31,8 +31,8 @@
   </section>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { computed } from "vue";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime.js";
 import { WORKING_START_DATE } from "@/shared/constants";
@@ -41,15 +41,7 @@ import ContactsBlock from "@/components/ContactsBlock.vue";
 
 dayjs.extend(relativeTime);
 
-export default defineComponent({
-  components: {
-    ContactsBlock,
-    CanvasAnimation,
-  },
-  computed: {
-    startWorkingDate(): string {
-      return dayjs(WORKING_START_DATE).fromNow(true);
-    },
-  },
+const startWorkingDate = computed((): string => {
+  return dayjs(WORKING_START_DATE).fromNow(true);
 });
 </script>

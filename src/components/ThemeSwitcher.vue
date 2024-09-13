@@ -2,18 +2,20 @@
   <button @click="onClick" />
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { useLocalStorage } from "@/shared/composable/useLocalStorage";
 
-export default defineComponent({
-  methods: {
-    onClick(): void {
-      if (document.body.classList.contains("dark"))
-        document.body.classList.remove("dark");
-      else document.body.classList.add("dark");
-    },
-  },
-});
+const { setStorageValue } = useLocalStorage("theme", "light");
+
+const onClick = (): void => {
+  if (document.body.classList.contains("dark")) {
+    document.body.classList.remove("dark");
+    setStorageValue("light");
+  } else {
+    document.body.classList.add("dark");
+    setStorageValue("dark");
+  }
+};
 </script>
 
 <style lang="scss" scoped>
