@@ -3,6 +3,8 @@
     class="min-h-screen bg-gray-100 text-gray-800 dark:text-gray-200 dark:bg-gray-800 px-4 py-10 sm:px-12 sm:py-16"
   >
     <div class="wrapper flex-grow w-full">
+      <web-cam />
+
       <content-block />
       <work-experience />
       <examples-of-work />
@@ -20,9 +22,11 @@ import ExamplesOfWork from "@/components/ExamplesOfWork.vue";
 import { useHead } from "@vueuse/head";
 import { setInitialTheme } from "@/utils/set-initial-theme";
 import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
+import WebCam from "@/experiments/camera-masking/WebCam.vue";
 
 export default defineComponent({
   components: {
+    WebCam,
     ThemeSwitcher,
     ContentBlock,
     WorkExperience,

@@ -11,4 +11,20 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  build: {
+    minify: false,
+    target: "esnext",
+    sourcemap: true,
+  },
+  optimizeDeps: {
+    include: ["@mediapipe/tasks-vision"],
+    esbuildOptions: {
+      target: "esnext", // Ensures proper WASM support
+    },
+  },
+  server: {
+    fs: {
+      strict: false, // Allows loading external files like WASM
+    },
+  },
 });
