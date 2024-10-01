@@ -46,6 +46,8 @@ function App() {
       canvasCtx as CanvasRenderingContext2D
     );
 
+    canvasCtx!.clearRect(0, 0, canvasWidth, canvasHeight);
+
     const rgbColor = hexToRgb(lipsColor.current);
     const rgbaColor = `rgba(${rgbColor?.r}, ${rgbColor?.g}, ${rgbColor?.b}, 0.45)`;
 
@@ -152,18 +154,23 @@ function App() {
 
   return (
     <div>
-      <div className="relative -scale-x-100 w-max">
+      <div className="relative -scale-x-100 w-max rounded-xl overflow-hidden">
         <video ref={videoRef} autoPlay playsInline muted />
 
         <canvas
           ref={canvasRef}
           className="absolute top-0 left-0 w-full h-full"
         />
+      </div>
+
+      <p className="flex items-center px-4 py-2">
+        <span className="pr-3">Pick color of the lips:</span>
+
         <ColorPicker
           value={lipsColor.current}
           onChange={(value) => (lipsColor.current = value)}
         />
-      </div>
+      </p>
     </div>
   );
 }
