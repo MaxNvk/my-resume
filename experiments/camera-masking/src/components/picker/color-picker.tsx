@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useMemo, useState } from "react";
+import { forwardRef, useEffect, useMemo, useState } from "react";
 import { HexColorPicker } from "react-colorful";
 import { cn } from "../../lib/utils";
 import { useForwardedRef } from "../../lib/use-forwarded-ref";
@@ -26,9 +26,12 @@ const ColorPicker = forwardRef<
     const ref = useForwardedRef(forwardedRef);
     const [open, setOpen] = useState(false);
 
-    const parsedValue = useMemo(() => {
-      return value || "#FFFFFF";
-    }, [value]);
+    const [internalValue, setInternalValue] = useState(value || "#ffffff");
+
+    const changeValue = (newVal: string) => {
+      onChange(newVal);
+      setInternalValue(newVal);
+    };
 
     return (
       <Popover onOpenChange={setOpen} open={open}>
@@ -37,27 +40,24 @@ const ColorPicker = forwardRef<
             {...props}
             className={cn("block", className)}
             name={name}
-            onClick={() => {
-              setOpen(true);
-            }}
+            onClick={() => setOpen(true)}
             size="icon"
             style={{
-              backgroundColor: parsedValue,
+              backgroundColor: internalValue,
             }}
             variant="outline"
           >
             <div />
           </Button>
         </PopoverTrigger>
+
         <PopoverContent className="w-full">
-          <HexColorPicker color={parsedValue} onChange={onChange} />
+          <HexColorPicker color={internalValue} onChange={changeValue} />
           <Input
             maxLength={7}
-            onChange={(e) => {
-              onChange(e?.currentTarget?.value);
-            }}
+            onChange={(e) => changeValue(e?.currentTarget?.value)}
             ref={ref}
-            value={parsedValue}
+            value={internalValue}
           />
         </PopoverContent>
       </Popover>
