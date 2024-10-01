@@ -8,8 +8,9 @@ import {
 import { createFaceLandMarker } from "./utils/create-landmarker";
 import { ColorPicker } from "./components/picker/color-picker";
 import { hexToRgb } from "./utils/hex-to-rgb";
+// import OpenAI from "openai";
 
-const videoWidth = 600;
+const videoWidth = 400;
 
 const constraints: MediaStreamConstraints = {
   audio: false,
@@ -152,9 +153,16 @@ function App() {
     enableCam();
   }, [enableCam, faceLandMarker]);
 
+  // const client = new OpenAI({
+  //   apiKey: "My API Key",
+  //   dangerouslyAllowBrowser: true,
+  // });
+
   return (
-    <div>
-      <div className="relative -scale-x-100 w-max rounded-xl overflow-hidden">
+    <div className="flex flex-col items-center justify-center font-mono bg-pink-300 min-h-screen text-center">
+      <h1 className="text-5xl font-bold">Pick your lips color</h1>
+
+      <div className="relative -scale-x-100 w-max rounded-xl overflow-hidden my-5">
         <video ref={videoRef} autoPlay playsInline muted />
 
         <canvas
@@ -163,7 +171,7 @@ function App() {
         />
       </div>
 
-      <p className="flex items-center px-4 py-2">
+      <p className="flex items-center px-4">
         <span className="pr-3">Pick color of the lips:</span>
 
         <ColorPicker

@@ -11,10 +11,10 @@ export const createFaceLandMarker = async () => {
         "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task",
       delegate: "GPU",
     },
-    outputFaceBlendshapes: true,
+    outputFaceBlendshapes: false,
     outputFacialTransformationMatrixes: true,
     runningMode: "VIDEO",
-    numFaces: 1,
+    numFaces: 2,
   });
 
   return landmarker;
