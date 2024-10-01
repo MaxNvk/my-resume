@@ -51,6 +51,7 @@ function App() {
 
     const rgbColor = hexToRgb(lipsColor.current);
     const rgbaColor = `rgba(${rgbColor?.r}, ${rgbColor?.g}, ${rgbColor?.b}, 0.45)`;
+    const rgbaColorStroke = `rgba(${rgbColor?.r}, ${rgbColor?.g}, ${rgbColor?.b}, 0.075)`;
 
     if (results!.faceLandmarks) {
       for (const landmarks of results!.faceLandmarks) {
@@ -59,8 +60,8 @@ function App() {
           landmarks,
           FaceLandmarker.FACE_LANDMARKS_LIPS,
           {
-            color: rgbaColor,
-            lineWidth: 2,
+            color: rgbaColorStroke,
+            lineWidth: 4,
             radius: 10,
           }
         );
