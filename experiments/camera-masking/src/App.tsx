@@ -8,7 +8,6 @@ import {
 import { createFaceLandMarker } from "./utils/create-landmarker";
 import { ColorPicker } from "./components/picker/color-picker";
 import { hexToRgb } from "./utils/hex-to-rgb";
-// import OpenAI from "openai";
 
 const videoWidth = 400;
 
@@ -62,7 +61,6 @@ function App() {
           {
             color: rgbaColorStroke,
             lineWidth: 4,
-            radius: 10,
           }
         );
 
