@@ -4,7 +4,7 @@
 
     <ul class="mt-6 pl-4">
       <li v-for="(item, key) in experienceList" :key="key" class="mb-6">
-        <p class="mb-1">
+        <p class="mb-1 text-lg">
           <i class="mr-2">{{ item.dates }}</i>
 
           <b class="font-semibold">{{ item.title }}</b>
