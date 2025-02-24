@@ -7,23 +7,21 @@
     </a>
 
     <a class="text-red-400" :href="TELEGRAM_LINK">
-      <font-awesome-icon :icon="['fa-brands', 'telegram-plane']" />
+      <font-awesome-icon :icon="['fab', 'telegram-plane']" />
+    </a>
+
+    <a class="text-red-400" :href="LINKEDIN_LINK" target="_blank">
+      <font-awesome-icon :icon="['fab', 'linkedin']" />
     </a>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import { EMAIL_ADDRESS, TELEGRAM_LINK } from "@/shared/constants";
-
-export default defineComponent({
-  setup() {
-    return {
-      TELEGRAM_LINK,
-      EMAIL_ADDRESS,
-    };
-  },
-});
+<script lang="ts" setup>
+import {
+  EMAIL_ADDRESS,
+  TELEGRAM_LINK,
+  LINKEDIN_LINK,
+} from "@/shared/constants";
 </script>
 
 <style lang="scss" scoped></style>

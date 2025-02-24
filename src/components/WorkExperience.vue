@@ -2,15 +2,23 @@
   <section class="mt-12">
     <h2 class="text-2xl font-semibold">Work experience</h2>
 
-    <ul class="mt-6 list-disc pl-4">
+    <ul class="mt-6 pl-4">
       <li v-for="(item, key) in experienceList" :key="key" class="mb-6">
-        <p class="font-semibold mb-1">
-          {{ item.title }}
+        <p class="mb-1">
+          <i class="mr-2">{{ item.dates }}</i>
+
+          <b class="font-semibold">{{ item.title }}</b>
         </p>
-        <p class="mb-3">
-          {{ item.description }}
-        </p>
-        <p><strong>Tech stack:</strong> {{ item.techStack }}</p>
+
+        <ul class="mb-4 list-disc pl-4">
+          <li
+            v-for="(subItem, key) in item.description"
+            :key="key"
+            class="pl-1 mb-1"
+          >
+            {{ subItem }}
+          </li>
+        </ul>
       </li>
     </ul>
   </section>

@@ -12,59 +12,47 @@
   </main>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { onBeforeMount } from "vue";
 import ContentBlock from "@/components/ContentBlock.vue";
 import WorkExperience from "@/components/WorkExperience.vue";
 import ExamplesOfWork from "@/components/ExamplesOfWork.vue";
 import { useHead } from "@vueuse/head";
 import { setInitialTheme } from "@/utils/set-initial-theme";
 import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
-import WebCam from "@/experiments/camera-masking/WebCam.vue";
+useHead({
+  title: "Maksym Novikov | Frontend Engineer",
+  meta: [
+    {
+      name: "description",
+      content: "You can view more info about me on this website.",
+    },
+    {
+      property: "og:url",
+      content: "https://maxnvk.github.io/",
+    },
+    {
+      property: "og:title",
+      content: "Maksym Novikov's website",
+    },
+    {
+      property: "og:description",
+      content: "You can view more info about me on this website.",
+    },
+    {
+      property: "og:image",
+      content: "/og-image.png",
+    },
+  ],
+});
 
-export default defineComponent({
-  components: {
-    WebCam,
-    ThemeSwitcher,
-    ContentBlock,
-    WorkExperience,
-    ExamplesOfWork,
-  },
-  setup() {
-    useHead({
-      title: "Maksym Novikov's website",
-      meta: [
-        {
-          name: "description",
-          content: "You can view more info about me on this website.",
-        },
-        {
-          property: "og:url",
-          content: "https://maxnvk.github.io/",
-        },
-        {
-          property: "og:title",
-          content: "Maksym Novikov's website",
-        },
-        {
-          property: "og:description",
-          content: "You can view more info about me on this website.",
-        },
-        {
-          property: "og:image",
-          content: "/og-image.png",
-        },
-      ],
-    });
-  },
-  beforeMount() {
-    setInitialTheme();
-  },
+onBeforeMount(() => {
+  setInitialTheme();
 });
 </script>
 
 <style scoped lang="scss">
 .wrapper {
-  max-width: 31rem;
+  max-width: 50vw;
 }
 </style>

@@ -6,7 +6,8 @@
 import { getDegreeSin } from "@/utils/get-degree-sin";
 import type { IAnimationRect } from "@/shared/interfaces/animation-rect.interface";
 import { ERectColor } from "@/shared/enums/rect-color.enum";
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, computed } from "vue";
+import { useLocalStorage } from "@/shared/composable/useLocalStorage";
 
 const ROWS_COUNT = 35;
 const COLS_COUNT = 45;
@@ -25,14 +26,13 @@ const IMAGE_HEIGHT =
   ROWS_COUNT * RECT_SIZE + TOP_POSITION * 2 + WAVE_SIZE * 2 + SHADOW_OFFSET;
 const IMAGE_WIDTH = COLS_COUNT + LEFT_POSITION * 2 + SHADOW_OFFSET;
 
-// const { storageValue } = useLocalStorage("theme");
+const { storageValue } = useLocalStorage("theme");
 
-// const isDarkMode = computed(() => storageValue.value === "dark");
+const isDarkMode = computed(() => storageValue.value === "dark");
 
 const getAnimationState = (offset: number): IAnimationRect[][] => {
-  const topColor = /*isDarkMode.value ? ERectColor.Red :*/ ERectColor.Blue;
-  const bottomColor =
-    /*isDarkMode.value ? ERectColor.Black :*/ ERectColor.Yellow;
+  const topColor = isDarkMode.value ? ERectColor.Red : ERectColor.Blue;
+  const bottomColor = isDarkMode.value ? ERectColor.Black : ERectColor.Yellow;
   const matrix: IAnimationRect[][] = [];
 
   for (let row = 0; row < ROWS_COUNT; row++) {
