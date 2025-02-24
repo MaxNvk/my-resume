@@ -7,9 +7,11 @@ import { faPhone } from "@fortawesome/free-solid-svg-icons/faPhone";
 import { faTelegramPlane } from "@fortawesome/free-brands-svg-icons/faTelegramPlane";
 import { faAt } from "@fortawesome/free-solid-svg-icons/faAt";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
+import { router } from "./router";
 
 library.add(faPhone, faAt, faTelegramPlane, faLinkedin);
 
 export const createApp = ViteSSG(App, ({ app }) => {
   app.component("font-awesome-icon", FontAwesomeIcon);
+  app.use(router);
 });
