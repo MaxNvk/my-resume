@@ -21,6 +21,8 @@ import ExamplesOfWork from "@/components/ExamplesOfWork.vue";
 
 <style scoped lang="scss">
 .wrapper {
-  max-width: 50vw;
+  @screen md {
+    max-width: 50vw;
+  }
 }
 </style>
